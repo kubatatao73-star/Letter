@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Animated Letter Centered</title>
+
     <style>
       :root {
         --bg1: #fdf2f8;
@@ -15,6 +16,7 @@
       * {
         box-sizing: border-box;
       }
+
       html,
       body {
         height: 100%;
@@ -99,6 +101,8 @@
         transform: translate(-50%, -50%) scale(0.7);
         width: 90%;
         max-width: 650px;
+        max-height: 80vh; /* Enables scroll area */
+        overflow-y: auto; /* Vertical scroll */
         background: var(--paper);
         padding: 40px;
         border-radius: 14px;
@@ -113,6 +117,16 @@
       .letter.show {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
+      }
+
+      /* Scrollbar styling */
+      .letter::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .letter::-webkit-scrollbar-thumb {
+        background: #db2779;
+        border-radius: 10px;
       }
 
       h1 {
@@ -134,6 +148,7 @@
       }
     </style>
   </head>
+
   <body>
     <div class="stage">
       <!-- Envelope -->
@@ -174,6 +189,18 @@
           But seriously, I appreciate you. Thank you for the laughs, the
           memories, and the time.
         </p>
+
+        <!-- Extra content to demonstrate scroll -->
+        <p>
+          I also hope that whatever path you choose, you keep smiling and
+          chasing what makes you happy. Life’s too short to overthink every
+          little thing.
+        </p>
+        <p>
+          Just wanted you to know that I value our moments — even the simple
+          ones. Those are sometimes the best.
+        </p>
+
         <div class="signature">— Lian</div>
       </div>
     </div>
@@ -192,22 +219,19 @@
 
         if (env.classList.contains("open")) return;
 
-        // Open envelope flap
         env.classList.add("open");
 
-        // Show letter after small delay
         setTimeout(() => letter.classList.add("show"), 300);
 
-        // Fade envelope
         setTimeout(() => {
           env.style.transition = "opacity 0.5s ease, transform 0.5s ease";
           env.style.opacity = 0;
           env.style.transform = "scale(0.9)";
         }, 300);
 
-        // Remove envelope from DOM flow after animation
         setTimeout(() => (env.style.display = "none"), 900);
       }
     </script>
   </body>
 </html>
+
